@@ -4,7 +4,7 @@ public abstract class Owl implements Runnable {
 	//Classe abstraite pour les piafs, permet aussi de gérer le threading de chaque classe.
 	
 	
-	private long cycle_interval= (long) 0.5; // intervalle de temps (en ms) entre 2 appels d'IA.
+	private long cycle_interval= (long) 500; // intervalle de temps (en ms) entre 2 appels d'IA.
 	
 	protected int speed;
 	protected int taille;
@@ -21,6 +21,7 @@ public abstract class Owl implements Runnable {
 	}
 
 	public void run(){
+		System.out.println(name + " crée!");
 		do {
 			try {
 				Thread.sleep(cycle_interval);
@@ -52,6 +53,8 @@ public abstract class Owl implements Runnable {
 				} else {//Si la nourriture n'est pas a portée.
 					move_towards(b.get_food().get(min_index).get_pos());
 				}	
+			} else {
+				System.out.println(name + " dort pour ce tour!");
 			}
 		}//On libère le verrou
 	}

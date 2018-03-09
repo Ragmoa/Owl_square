@@ -3,16 +3,18 @@ package app;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+public class Board {// La Board aura probablement son propre thread aussi? ou alors un pour l'affichage
 	
 	private List<Food> food;
 	private List<Owl> owls;//la liste des oiseaux, sert pour le random scare.
 	private float mix,max,miy,may;//TODO: set aux coordonnées max et min de x et y pour le tableau.
 	
 	private float default_freshness;
+	
 	public Board() {
 		food=new ArrayList<Food>();
 		owls=new ArrayList<Owl>();
+		init_board(3,0,0);
 	}
 	
 	public void addFood(Vector2 pos) {
@@ -26,7 +28,7 @@ public class Board {
 		synchronized(food){ // pour éviter que les oiseaux cherchent a lire dans la nourriture avant qu'on ait finit de les créer, on lock
 			int i=0,j=0;
 			for (i=0;i<owl1_number;i++) {
-				owls.add(new White_Owl(rd_pos(mix,max,miy,may),new String("["+j+"] : While_Owl_"+i) ,this));
+				owls.add(new White_Owl(rd_pos(mix,max,miy,may),new String("["+j+"] : White_Owl_"+i) ,this));
 				j++;
 			}
 			// TODO: Faire de même pour les deux autres types de chouettes.
