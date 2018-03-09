@@ -18,7 +18,6 @@ public abstract class Owl implements Runnable {
 		this.name=thread_name;
 		this.b=b;
 		t=new Thread(this,thread_name);
-
 	}
 
 	public void run(){
@@ -36,16 +35,31 @@ public abstract class Owl implements Runnable {
 	private void owl_ia() {
 		synchronized(b.get_food()) {
 			if (b.get_food().size()>0) {
-				float min_magnetude=99999;
+				float min_magnitude=99999, m;
 				int min_index=-1,i=0;
-				
+				for (i=0;i<b.get_food().size();i++) {//On cherche la nourriture la plus proche.
+					m=pos.minus(b.get_food().get(i).get_pos()).magnitude();
+					if (m<min_magnitude) {
+						min_magnitude=m;
+						min_index=i;
+					}
+				}
+				if (min_magnitude<speed) {// Si la nourriture est a portée, on se jette dessus pour la dévorer
+					this.pos=b.get_food().get(min_index).get_pos();
+					if (b.get_food().get(min_index).isFresh()) {// On vérifie quand même qu'elle soit fraiche.
+						b.get_food().remove(min_index);
+					}
+				} else {//Si la nourriture n'est pas a portée.
+					move_towards(b.get_food().get(min_index).get_pos());
+				}	
 			}
+		}//On libère le verrou
+	}
 
-		}
-		//TODO:Chercher de la nourriture
-		//Si on en trouve on se déplace vers la plus proche.
-		//Si on est dessus, on la mange, si elle est encore fraiche.
-		//Sinon on dort	
+	private void move_towards(Vector2 fpos) {
+		Vector2 mv=(fpos.minus(pos)).normalize().times(speed);//On calcule le vecteur parcouru
+		mv=mv.plus(pos);//On calcule la nouvelle position
+		pos=new Vector2((float)Math.floor(mv.get_x()),(float)Math.floor(mv.get_y()));//  On applique le déplacement.
 	}
 	
 	

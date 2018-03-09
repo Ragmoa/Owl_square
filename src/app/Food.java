@@ -16,4 +16,10 @@ public class Food {
 			return false;
 		}
 	}
+	
+	//Getters and Setters
+	
+	public Vector2 get_pos() {
+		return pos;
+	}
 }
