@@ -65,5 +65,12 @@ public abstract class Owl implements Runnable {
 		pos=new Vector2((float)Math.floor(mv.get_x()),(float)Math.floor(mv.get_y()));//  On applique le déplacement.
 	}
 	
+	//Getters and Setters
+	public Vector2 get_pos(){
+		return this.pos;
+	}
 	
+	public int get_size() {
+		return this.taille;
+	}
 }

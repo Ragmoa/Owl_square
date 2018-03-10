@@ -11,10 +11,14 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 	
 	private float default_freshness;
 	
-	public Board() {
+	public Board(float mix, float max, float miy, float may) {
 		food=new ArrayList<Food>();
 		owls=new ArrayList<Owl>();
 		init_board(3,0,0);
+		this.mix=mix;
+		this.max=max;
+		this.miy=miy;
+		this.may=may;
 	}
 	
 	public void addFood(Vector2 pos) {
@@ -38,11 +42,16 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 	private Vector2 rd_pos(float mix, float max, float miy, float may) {//Genère une position Random
 		float x=(float)(Math.random()*max+mix);// 
 		float y=(float)(Math.random()*may+miy);
+		System.out.println(x + " " + y);
 		return new Vector2(x,y);
 	}
 		//Getters and Setters
 	
 	public List<Food> get_food() {
 		return food;
+	}
+	
+	public List<Owl> get_owl() {
+		return owls;
 	}
 }
