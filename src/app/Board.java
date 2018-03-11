@@ -6,11 +6,11 @@ import java.util.List;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
-public class Board {// La Board aura probablement son propre thread aussi? ou alors un pour l'affichage
+public class Board {
 	
 	private List<Food> food;
 	private List<Food> expiredFood;
-	private List<Owl> owls;//la liste des oiseaux, sert pour le random scare.
+	private List<Owl> owls;
 	private List<OwlCircle> owlsCircles;
 	private float mix,max,miy,may;// set aux coordonnées max et min de x et y pour le tableau.
 	private Group root;

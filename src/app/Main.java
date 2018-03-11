@@ -70,7 +70,6 @@ public class Main extends Application {
     	for (i=0;i<b.get_food().size();i++) {
     		b.get_food().get(i).getting_older();
     		if(b.get_food().get(i).isFresh()) {
-    			System.out.println("Changing color");
     			FillTransition ft = new FillTransition(Duration.millis(1000), b.get_food().get(i).get_body(), Color.GREEN, Color.BROWN);
     			ft.setAutoReverse(true);
     			ft.play();
