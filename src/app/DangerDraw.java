@@ -16,7 +16,7 @@ public class DangerDraw extends Parent{
 		this.getChildren().add(dangerBody);
 	}
 	
-	public void updateRectangle(Vector2 pos) {
+	public synchronized void updateRectangle(Vector2 pos) {
 		dangerBody.setX(pos.get_x());
 		dangerBody.setY(pos.get_y());
 	}

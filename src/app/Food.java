@@ -12,11 +12,13 @@ public class Food implements Runnable {
 	protected Thread t;
 	private FoodCircle circle;
 	private Group root;
+	private Board b;
 
-	public Food(Vector2 pos, float f, Group root) {
+	public Food(Vector2 pos, float f, Group root, Board b) {
 		this.pos=pos;
 		this.freshness=f;
 		this.root=root;
+		this.b=b;
 		createCircle();
 		t=new Thread(this,"food"+pos.get_x());
 		t.start();
@@ -51,15 +53,27 @@ public class Food implements Runnable {
 	public void removeFoodCircle() {
 		//root.getChildren().remove(circle);
 		circle.get_foodBody().setOpacity(0);
+		t.stop();
 	}
 	
 	public void getting_older() {
-		if(this.freshness>0) this.freshness--;
+		this.freshness--;
 		if(!this.isFresh()) {
 			circle.get_foodBody().setFill(Color.BROWN);
 //			FillTransition ft = new FillTransition(Duration.millis(1000), circle.get_foodBody(), Color.GREEN, Color.BROWN);
 //			ft.setAutoReverse(true);
 //			ft.play();
+		}
+		if (this.freshness<-5.0) {
+			synchronized(b.get_food()) {
+			int i=0;
+			for (i=0;i<b.get_food().size();i++) {
+				if (b.get_food().get(i).get_pos().get_x()==pos.get_x() && b.get_food().get(i).get_pos().get_y()==pos.get_y() ) {
+					b.get_food().remove(i);
+				}
+			}
+			removeFoodCircle();
+			}
 		}
 	}
 	//Getters and Setters

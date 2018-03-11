@@ -12,7 +12,6 @@ public class FoodCircle extends Parent{
 	
 	public FoodCircle(Vector2 center) {
 		this.center=center;
-		
 		foodBody = new Circle(center.get_x(), center.get_y(), 5);
 		foodBody.setFill(Color.GREEN);
 		foodBody.setStroke(Color.BLACK);

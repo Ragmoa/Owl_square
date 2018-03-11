@@ -98,8 +98,10 @@ public abstract class Owl implements Runnable {
 	}
 	
 	private void updateCircle() {
+		synchronized(circle) {
 		circle.get_owlBody().setCenterX(pos.get_x());
 		circle.get_owlBody().setCenterY(pos.get_y());
+		}
 	}
 	//Getters and Setters
 	public Vector2 get_pos(){

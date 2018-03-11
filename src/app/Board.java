@@ -11,7 +11,7 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 	private List<Owl> owls;//la liste des oiseaux, sert pour le random scare.
 	private float mix,max,miy,may;// set aux coordonnées max et min de x et y pour le tableau.
 	private Group root;
-	private float default_freshness=10;
+	private float default_freshness=5;
 	private Danger danger;
 	
 	public Board(float mix, float max, float miy, float may, Group root) {
@@ -30,7 +30,7 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 	
 	public void addFood(Vector2 pos, Group root) {
 		synchronized(food) {//On lock la liste de nourriture.
-			food.add(new Food(pos,default_freshness, root));
+			food.add(new Food(pos,default_freshness, root,this));
 			return;// La liste est unlock ici.
 		}
 	}
