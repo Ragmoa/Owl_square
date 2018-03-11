@@ -30,7 +30,6 @@ public class Main extends Application {
         
         scene.setOnMouseClicked(new EventHandler<MouseEvent>(){//on ajoute de la nourriture
  	            public void handle(MouseEvent me){
- 	                System.out.println(me.getSceneX() + " " + me.getSceneY());
  	                b.addFood(new Vector2((float)me.getSceneX(),(float)me.getSceneY()), root);
  	                root.getChildren().add(b.get_food().get(b.get_food().size()-1));	            
  	                }
@@ -68,7 +67,6 @@ public class Main extends Application {
 	public void checkFood(Board b) {
     	for (Food food : b.get_food()) {
     		food.getting_older();
-    		System.out.println("check");
     	} 
     }
 }

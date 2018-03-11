@@ -53,7 +53,7 @@ public abstract class Owl implements Runnable {
 
 				if (min_magnitude<speed) {// Si la nourriture est a portée, on se jette dessus pour la dévorer
 					this.pos=b.get_food().get(min_index).get_pos();
-					System.out.println(name + " veut manger un truc vert.");
+					System.out.println(name + " veut manger un truc.");
 					if (b.get_food().get(min_index).isFresh()) {// On vérifie quand même qu'elle soit fraiche.
 						b.get_food().get(min_index).removeFoodCircle();
 						b.get_food().remove(min_index);
@@ -61,7 +61,7 @@ public abstract class Owl implements Runnable {
 					}
 					else {
 						b.get_food().remove(min_index);						
-						System.out.println(name + " ne mange pas de la nourriture avariée.");
+						System.out.println("C'est périmé ! " + name + " ne mange pas de la nourriture avariée.");
 					}
 				} else {//Si la nourriture n'est pas a portée.
 					move_towards(b.get_food().get(min_index).get_pos());

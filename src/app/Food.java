@@ -21,6 +21,7 @@ public class Food extends Parent{
 		foodBody.setFill(Color.GREEN);
 		foodBody.setStroke(Color.BLACK);
 		this.getChildren().add(foodBody);
+		System.out.println("Food crée.");
 	}
 	
 	public boolean isFresh() {
