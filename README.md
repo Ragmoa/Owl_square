@@ -1,10 +1,16 @@
 # Owl_square
-Une implémentation de Pigeons Square en Java
 
-Les oiseaux sont représentés par des cercles a l'écran, chaqun utilise son prore thread.
+*Par:*
+- *Nicolas Leroy(LERN13029600),*
+- *Francis Manzanilla(MANF24049403),*
+- *Guillaume Ryckaert(RYCG06079402).*
 
-Pour placer de la nourriture, il suffit de cliquer dans la fenêtre.
+Une implÃ©mentation de Pigeons Square en Java
 
-Après un court laps de temps, la nourriture expire, et devient marron, elle cessera d'attirer les oiseaux, une fois que l'un d'entre eux aura tenter de la manger.
+Les oiseaux sont reprÃ©sentÃ©s par des cercles a l'Ã©cran, chaqun utilise son prore thread.
 
-Un danger peut apparaitre de manière aléatoire a l'écran, éloignant les oiseaux. Il est représenté par un carré rouge.
+Pour placer de la nourriture, il suffit de cliquer dans la fenÃªtre.
+
+AprÃ¨s un court laps de temps, la nourriture expire, et devient marron, elle cessera d'attirer les oiseaux, une fois que l'un d'entre eux aura tenter de la manger.
+
+Un danger peut apparaitre de maniÃ¨re alÃ©atoire a l'Ã©cran, Ã©loignant les oiseaux. Il est reprÃ©sentÃ© par un carrÃ© rouge.
