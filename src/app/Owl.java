@@ -8,7 +8,7 @@ public abstract class Owl implements Runnable {
 	//Classe abstraite pour les piafs, permet aussi de gérer le threading de chaque classe.
 	
 	
-	private long cycle_interval= (long) 100; // intervalle de temps (en ms) entre 2 appels d'IA.
+	private long cycle_interval= (long) 50; // intervalle de temps (en ms) entre 2 appels d'IA.
 	
 	protected int speed;
 	protected int taille;
@@ -16,15 +16,15 @@ public abstract class Owl implements Runnable {
 	protected Vector2 pos;//la position du piaf en question.
 	protected Board b; //le board.
 	protected String name;//nom du thread et de l'oiseau, principalement utilisé pour le débug.
-	protected Group root;
-	protected OwlCircle circle;
+	//protected Group root;
+	//protected OwlCircle circle;
 	
-	public Owl(Vector2 pos, String thread_name, Board b, Group root) {
+	public Owl(Vector2 pos, String thread_name, Board b) {
 		this.pos=pos;
 		this.name=thread_name;
 		this.b=b;
 		t=new Thread(this,thread_name);
-		this.root=root;
+		//this.root=root;
 	}
 
 	public void run(){
@@ -82,7 +82,8 @@ public abstract class Owl implements Runnable {
 		mv=mv.plus(pos);//On calcule la nouvelle position
 		pos=new Vector2((float)Math.floor(mv.get_x()),(float)Math.floor(mv.get_y()));//  On applique le déplacement.
 		this.stay_inside();
-		updateCircle();
+		//b.checkOwlPosition();
+		//updateCircle();
 	}
 	
 	private void move_away(Vector2 fpos) {
@@ -90,20 +91,21 @@ public abstract class Owl implements Runnable {
 		mv=mv.plus(pos);//On calcule la nouvelle position
 		pos=new Vector2((float)Math.floor(mv.get_x()),(float)Math.floor(mv.get_y()));//  On applique le déplacement.
 		this.stay_inside();
-		updateCircle();
+		//b.checkOwlPosition();
+		//updateCircle();
 	}
 	
-	protected void createCircle(Vector2 center, int radius, Color color) {
-		this.circle=new OwlCircle(center, radius, color);
-		root.getChildren().add(circle);
-	}
-	
-	private void updateCircle() {
-		synchronized(circle) {
-		circle.get_owlBody().setCenterX(pos.get_x());
-		circle.get_owlBody().setCenterY(pos.get_y());
-		}
-	}
+//	protected void createCircle(Vector2 center, int radius, Color color) {
+//		this.circle=new OwlCircle(center, radius, color);
+//		root.getChildren().add(circle);
+//	}
+//	
+//	private void updateCircle() {
+//		synchronized(circle) {
+//		circle.get_owlBody().setCenterX(pos.get_x());
+//		circle.get_owlBody().setCenterY(pos.get_y());
+//		}
+//	}
 	//Getters and Setters
 	public Vector2 get_pos(){
 		return this.pos;

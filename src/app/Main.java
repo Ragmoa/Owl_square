@@ -1,14 +1,17 @@
 package app;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 
 public class Main extends Application {
 
@@ -44,6 +47,22 @@ public class Main extends Application {
             	System.exit(0);
             }
         });
+        
+        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.millis(50), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	checkOwlPosition(b);  
+            }
+        }));
+        fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
+        fiveSecondsWonder.play();
+    }
+    
+	public void checkOwlPosition(Board b) {
+    	for (Owl owl : b.get_owl()) {
+    		b.get_owls_circles().get(b.get_owl().indexOf(owl)).get_owlBody().setCenterX(owl.get_pos().get_x());
+    		b.get_owls_circles().get(b.get_owl().indexOf(owl)).get_owlBody().setCenterY(owl.get_pos().get_y());
+    	} 
     }
 }
 

@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.Group;
+import javafx.scene.paint.Color;
 
 public class Board {// La Board aura probablement son propre thread aussi? ou alors un pour l'affichage
 	
 	private List<Food> food;
 	private List<Owl> owls;//la liste des oiseaux, sert pour le random scare.
+	private List<OwlCircle> owlsCircles;
 	private float mix,max,miy,may;// set aux coordonnées max et min de x et y pour le tableau.
 	private Group root;
 	private float default_freshness=5;
@@ -17,6 +19,7 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 	public Board(float mix, float max, float miy, float may, Group root) {
 		food=new ArrayList<Food>();
 		owls=new ArrayList<Owl>();	
+		owlsCircles=new ArrayList<OwlCircle>();
 		this.mix=mix;
 		this.max=max;
 		this.miy=miy;
@@ -39,17 +42,25 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 		synchronized(food){ // pour éviter que les oiseaux cherchent a lire dans la nourriture avant qu'on ait finit de les créer, on lock
 			int i=0,j=0;
 			for (i=0;i<owl1_number;i++) {
-				owls.add(new White_Owl(rd_pos(mix,max,miy,may),new String("["+j+"] : White_Owl_"+i) ,this, root));
+				owls.add(new White_Owl(rd_pos(mix,max,miy,may),new String("["+j+"] : White_Owl_"+i) ,this));
+				owlsCircles.add(new OwlCircle(owls.get(j).get_pos(),owls.get(j).get_size(), Color.WHITE));
 				j++;
 			}
 			for (i=0;i<owl2_number;i++) {
 				owls.add(new Ashy_Faced_Owl(rd_pos(mix,max,miy,may),new String("["+j+"] : Ashy_Faced_"+i) ,this, root));
+				owlsCircles.add(new OwlCircle(owls.get(j).get_pos(),owls.get(j).get_size(), Color.DARKGOLDENROD));
 				j++;
 			}
 			for (i=0;i<owl3_number;i++) {
 				owls.add(new Golden_Masked_Owl(rd_pos(mix,max,miy,may),new String("["+j+"] : Golden_Masked_"+i) ,this, root));
+				owlsCircles.add(new OwlCircle(owls.get(j).get_pos(),owls.get(j).get_size(), Color.GOLD));
 				j++;
 			}
+			
+			for (OwlCircle owlCircle : owlsCircles) {
+				root.getChildren().add(owlCircle);
+			}
+			
 			// TODO: Faire de même pour les deux autres types de chouettes.
 		}
 	}
@@ -68,6 +79,10 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 	
 	public List<Owl> get_owl() {
 		return owls;
+	}
+	
+	public List<OwlCircle> get_owls_circles() {
+		return owlsCircles;
 	}
 	
 	public Danger get_danger() {
