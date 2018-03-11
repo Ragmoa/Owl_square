@@ -14,3 +14,5 @@ Pour placer de la nourriture, il suffit de cliquer dans la fenêtre.
 Après un court laps de temps, la nourriture expire, et devient marron, elle cessera d'attirer les oiseaux, une fois que l'un d'entre eux aura tenter de la manger.
 
 Un danger peut apparaitre de manière aléatoire a l'écran, éloignant les oiseaux. Il est représenté par un carré rouge.
+
+Un .jar �x�cutable contenant le projet est disponible dans le dossier release.
