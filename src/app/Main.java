@@ -1,4 +1,5 @@
 package app;
+import javafx.animation.FillTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -65,8 +66,26 @@ public class Main extends Application {
     }
 	
 	public synchronized void checkFood(Board b) {
-    	for (Food food : b.get_food()) {
-    		food.getting_older();
+		int i=0;
+    	for (i=0;i<b.get_food().size();i++) {
+    		b.get_food().get(i).getting_older();
+    		if(b.get_food().get(i).isFresh()) {
+    			System.out.println("Changing color");
+    			FillTransition ft = new FillTransition(Duration.millis(1000), b.get_food().get(i).get_body(), Color.GREEN, Color.BROWN);
+    			ft.setAutoReverse(true);
+    			ft.play();
+    		}
+    		if (b.get_food().get(i).get_freshness()<-50.0) {
+    			b.get_food().get(i).removeFoodCircle();
+    			b.get_food().remove(i);
+    		}
+    	}
+    	for (i=0;i<b.get_expired().size();i++) {
+    		b.get_expired().get(i).getting_older();
+    		if (b.get_expired().get(i).get_freshness()<-50.0) {
+    			b.get_expired().get(i).removeFoodCircle();
+    			b.get_expired().remove(i);
+    		}
     	} 
     }
 }

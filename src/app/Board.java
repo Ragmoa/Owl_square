@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 public class Board {// La Board aura probablement son propre thread aussi? ou alors un pour l'affichage
 	
 	private List<Food> food;
+	private List<Food> expiredFood;
 	private List<Owl> owls;//la liste des oiseaux, sert pour le random scare.
 	private List<OwlCircle> owlsCircles;
 	private float mix,max,miy,may;// set aux coordonnées max et min de x et y pour le tableau.
@@ -18,6 +19,7 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 	
 	public Board(float mix, float max, float miy, float may, Group root) {
 		food=new ArrayList<Food>();
+		expiredFood=new ArrayList<Food>();
 		owls=new ArrayList<Owl>();	
 		owlsCircles=new ArrayList<OwlCircle>();
 		this.mix=mix;
@@ -89,5 +91,8 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 	public float[] get_bounds() {
 		float [] res={mix,max,miy,may};
 		return res;
+	}
+	public List<Food> get_expired(){
+		return expiredFood;
 	}
 }

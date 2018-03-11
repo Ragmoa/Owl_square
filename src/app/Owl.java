@@ -60,6 +60,7 @@ public abstract class Owl implements Runnable {
 						System.out.println(name + " a mangé un truc vert.");
 					}
 					else {
+						b.get_expired().add(b.get_food().get(min_index));
 						b.get_food().remove(min_index);						
 						System.out.println("C'est périmé ! " + name + " ne mange pas de la nourriture avariée.");
 					}

@@ -38,14 +38,7 @@ public class Food extends Parent{
 	
 	public void getting_older() {
 		this.freshness--;
-		if(!this.isFresh()) {
-			FillTransition ft = new FillTransition(Duration.millis(1000), foodBody, Color.GREEN, Color.BROWN);
-			ft.setAutoReverse(true);
-			ft.play();
-		}
-		if (this.freshness<-500.0) {
-			removeFoodCircle();
-		}
+		
 	}
 
 	//Getters and Setters
@@ -56,5 +49,8 @@ public class Food extends Parent{
 	
 	public float get_freshness() {
 		return freshness;
+	}
+	public Circle get_body() {
+		return foodBody;
 	}
 }
