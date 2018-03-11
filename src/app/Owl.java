@@ -1,8 +1,5 @@
 package app;
 
-import javafx.scene.Group;
-import javafx.scene.paint.Color;
-
 public abstract class Owl implements Runnable {
 	
 	//Classe abstraite pour les piafs, permet aussi de gérer le threading de chaque classe.
@@ -16,8 +13,6 @@ public abstract class Owl implements Runnable {
 	protected Vector2 pos;//la position du piaf en question.
 	protected Board b; //le board.
 	protected String name;//nom du thread et de l'oiseau, principalement utilisé pour le débug.
-	//protected Group root;
-	//protected OwlCircle circle;
 	
 	public Owl(Vector2 pos, String thread_name, Board b) {
 		this.pos=pos;
@@ -55,7 +50,7 @@ public abstract class Owl implements Runnable {
 						min_index=i;
 					}
 				}
-				//System.out.println(name + " cherche");
+
 				if (min_magnitude<speed) {// Si la nourriture est a portée, on se jette dessus pour la dévorer
 					this.pos=b.get_food().get(min_index).get_pos();
 					System.out.println(name + " veut manger un truc vert.");
@@ -65,7 +60,7 @@ public abstract class Owl implements Runnable {
 						System.out.println(name + " a mangé un truc vert.");
 					}
 					else {
-						b.get_food().remove(min_index);
+						b.get_food().remove(min_index);						
 						System.out.println(name + " ne mange pas de la nourriture avariée.");
 					}
 				} else {//Si la nourriture n'est pas a portée.
@@ -91,21 +86,9 @@ public abstract class Owl implements Runnable {
 		mv=mv.plus(pos);//On calcule la nouvelle position
 		pos=new Vector2((float)Math.floor(mv.get_x()),(float)Math.floor(mv.get_y()));//  On applique le déplacement.
 		this.stay_inside();
-		//b.checkOwlPosition();
-		//updateCircle();
+
 	}
 	
-//	protected void createCircle(Vector2 center, int radius, Color color) {
-//		this.circle=new OwlCircle(center, radius, color);
-//		root.getChildren().add(circle);
-//	}
-//	
-//	private void updateCircle() {
-//		synchronized(circle) {
-//		circle.get_owlBody().setCenterX(pos.get_x());
-//		circle.get_owlBody().setCenterY(pos.get_y());
-//		}
-//	}
 	//Getters and Setters
 	public Vector2 get_pos(){
 		return this.pos;

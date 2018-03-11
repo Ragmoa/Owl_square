@@ -13,7 +13,7 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 	private List<OwlCircle> owlsCircles;
 	private float mix,max,miy,may;// set aux coordonnées max et min de x et y pour le tableau.
 	private Group root;
-	private float default_freshness=5;
+	private float default_freshness=50;
 	private Danger danger;
 	
 	public Board(float mix, float max, float miy, float may, Group root) {
@@ -33,7 +33,7 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 	
 	public void addFood(Vector2 pos, Group root) {
 		synchronized(food) {//On lock la liste de nourriture.
-			food.add(new Food(pos,default_freshness, root,this));
+			food.add(new Food(pos,default_freshness));
 			return;// La liste est unlock ici.
 		}
 	}
@@ -60,8 +60,6 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 			for (OwlCircle owlCircle : owlsCircles) {
 				root.getChildren().add(owlCircle);
 			}
-			
-			// TODO: Faire de même pour les deux autres types de chouettes.
 		}
 	}
 	

@@ -3,8 +3,6 @@ package app;
 import java.util.Random;
 
 import javafx.scene.Group;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 public class Danger implements Runnable{
 	protected Vector2 pos;
@@ -15,10 +13,10 @@ public class Danger implements Runnable{
 	private float mix,max,miy,may;
 	
 	public Danger (float mix, float max, float miy, float may, Group root, DangerDraw rectangle) {
-		this.mix=mix;
-		this.max=max;
-		this.miy=miy;
-		this.may=may;
+		this.mix=mix+20;
+		this.max=max-20;
+		this.miy=miy+20;
+		this.may=may-20;
 		this.root=root;
 		this.rectangle=rectangle;
 		t=new Thread(this,"danger");
