@@ -14,7 +14,7 @@ public class Vector2 {
 		return (float) Math.sqrt(m);
 	}
 
-	public Vector2 minus(Vector2 v) {//realise l'opération this-v, et retorune le vecteur obtenu.
+	public Vector2 minus(Vector2 v) {//realise l'opération this-v, et retourne le vecteur obtenu.
 		return new Vector2(this.x-v.x,this.y-v.y);
 	}
 	

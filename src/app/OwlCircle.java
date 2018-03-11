@@ -1,8 +1,6 @@
 package app;
 
-import javafx.event.EventHandler;
 import javafx.scene.Parent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -10,14 +8,20 @@ public class OwlCircle extends Parent{
 	private Vector2 center;
 	private int radius;
 	private Color color;
+	private Circle owlBody;
 	
-	public OwlCircle(Owl chouette) {
-		this.center=chouette.get_pos();
-		this.radius=chouette.get_size();
+	public OwlCircle(Vector2 center, int radius, Color color) {
+		this.center=center;
+		this.radius=radius;
+		this.color=color;
 		
-		Circle owlBody = new Circle(25, 25, 20);
-		owlBody.setFill(Color.LIGHTBLUE);
+		this.owlBody = new Circle(center.get_x(), center.get_y(), radius);
+		owlBody.setFill(color);
 		owlBody.setStroke(Color.BLACK);
 		this.getChildren().add(owlBody);
+	}
+	
+	public Circle get_owlBody() {
+		return owlBody;
 	}
 }

@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -17,15 +18,21 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
     	int size=800;
-    	Board b= new Board(20,size-20,20,size-20);
+    	int border=1;
         primaryStage.setTitle("Owl Square");
         Group root = new Group();
-        Scene scene = new Scene(root, size, size, Color.WHITE);
-             
-        for (Owl current_owl : b.get_owl()) {
-			root.getChildren().add(new OwlCircle(current_owl));
-		}
+        Scene scene = new Scene(root, size, size, Color.LIGHTBLUE);
         
+        Board b= new Board(border,size-border,border,size-border, root);
+        
+        scene.setOnMouseClicked(new EventHandler<MouseEvent>(){//on ajoute de la nourriture
+ 	            public void handle(MouseEvent me){
+ 	                System.out.println(me.getSceneX() + " " + me.getSceneY());
+ 	                b.addFood(new Vector2((float)me.getSceneX(),(float)me.getSceneY()), root);
+ 	                //root.getChildren().add(new FoodCircle(b.get_food().get(b.get_food().size() - 1)));	            
+ 	                }
+ 	        }); 
+
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
