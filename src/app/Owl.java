@@ -85,8 +85,8 @@ public abstract class Owl implements Runnable {
 	}
 	
 	private void move_away(Vector2 fpos) {
-		Vector2 mv=(fpos.minus(pos)).normalize().times(speed);//On calcule le vecteur parcouru
-		mv=mv.minus(pos);//On calcule la nouvelle position
+		Vector2 mv=(pos.minus(fpos)).normalize().times(speed);//On calcule le vecteur parcouru
+		mv=mv.plus(pos);//On calcule la nouvelle position
 		pos=new Vector2((float)Math.floor(mv.get_x()),(float)Math.floor(mv.get_y()));//  On applique le déplacement.
 		//TODO empecher les owls de sortir de l'écran
 		updateCircle();
