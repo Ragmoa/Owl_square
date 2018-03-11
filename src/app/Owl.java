@@ -81,6 +81,7 @@ public abstract class Owl implements Runnable {
 		Vector2 mv=(fpos.minus(pos)).normalize().times(speed);//On calcule le vecteur parcouru
 		mv=mv.plus(pos);//On calcule la nouvelle position
 		pos=new Vector2((float)Math.floor(mv.get_x()),(float)Math.floor(mv.get_y()));//  On applique le déplacement.
+		this.stay_inside();
 		updateCircle();
 	}
 	
@@ -88,7 +89,7 @@ public abstract class Owl implements Runnable {
 		Vector2 mv=(pos.minus(fpos)).normalize().times(speed);//On calcule le vecteur parcouru
 		mv=mv.plus(pos);//On calcule la nouvelle position
 		pos=new Vector2((float)Math.floor(mv.get_x()),(float)Math.floor(mv.get_y()));//  On applique le déplacement.
-		//TODO empecher les owls de sortir de l'écran
+		this.stay_inside();
 		updateCircle();
 	}
 	
@@ -110,5 +111,20 @@ public abstract class Owl implements Runnable {
 	
 	public int get_size() {
 		return this.taille;
+	}
+	
+	public void stay_inside() {
+		if (pos.get_x()<b.get_bounds()[0]) {
+			pos= new Vector2(b.get_bounds()[0],pos.get_y());
+		}
+		else if (pos.get_x()>b.get_bounds()[1]) {
+			pos= new Vector2(b.get_bounds()[1],pos.get_y());
+		}
+		if (pos.get_y()<b.get_bounds()[2]) {
+			pos= new Vector2(pos.get_x(),b.get_bounds()[2]);
+		}
+		else if (pos.get_y()>b.get_bounds()[3]) {
+			pos= new Vector2(pos.get_x(),b.get_bounds()[3]);
+		}
 	}
 }

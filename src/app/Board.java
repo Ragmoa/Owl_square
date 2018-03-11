@@ -73,4 +73,8 @@ public class Board {// La Board aura probablement son propre thread aussi? ou al
 	public Danger get_danger() {
 		return danger;
 	}
+	public float[] get_bounds() {
+		float [] res={mix,max,miy,may};
+		return res;
+	}
 }
