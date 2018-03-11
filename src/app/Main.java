@@ -41,7 +41,7 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                System.out.println("close");//ICI POUR QUDN ON FERME LA FENETRE
+            	System.exit(0);
             }
         });
     }
