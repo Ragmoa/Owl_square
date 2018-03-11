@@ -64,7 +64,7 @@ public class Main extends Application {
     	} 
     }
 	
-	public void checkFood(Board b) {
+	public synchronized void checkFood(Board b) {
     	for (Food food : b.get_food()) {
     		food.getting_older();
     	} 
