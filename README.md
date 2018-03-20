@@ -15,4 +15,4 @@ Après un court laps de temps, la nourriture expire, et devient marron, elle ces
 
 Un danger peut apparaitre de manière aléatoire a l'écran, éloignant les oiseaux. Il est représenté par un carré rouge.
 
-Un .jar �x�cutable contenant le projet est disponible dans le dossier release.
+Un .jar éxécutable contenant le projet est disponible dans le dossier release.
